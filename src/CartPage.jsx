@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 import CartItems from './CartItems';
+import { getProductData } from "./Api";
 
 function CartPage(){
+    const savedDataString = localStorage.getItem("cart");
+    const cart = savedDataString ? JSON.parse(savedDataString) : {};
     
 const [total,setTotal] = useState(0);
 const [subtotal,setsubTotal] = useState(0);
+const [products,setProducts] = useState();
+const promises = Object.keys(cart).map((id) => {
+  return getProductData(id);
+}
+);
+const combinePromise = Promise.all(promises);
+console.log(combinePromise);
 
+useEffect(() => {combinePromise.then((response) =>{
+  console.log(response);
+  setProducts(response);
+})
+},[])
 
-  
     return (
     <div className='Container flex flex-col'>
-    <div className='products border-1'>
+    <div className='products border-1 flex flex-col gap-1'>
 
 
         <div className = "head  font-bold bg-gray-100 grid grid-cols-6 ">
@@ -19,7 +33,7 @@ const [subtotal,setsubTotal] = useState(0);
             <p className=''>Quality</p>
             <p className=''>Subtotal</p>
         </div>
-        <CartItems />
+        <CartItems products = {products}/>
     </div>
         <div className='py-1 flex justify-between '>
             <div>

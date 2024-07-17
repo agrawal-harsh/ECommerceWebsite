@@ -1,22 +1,19 @@
 import React, { useState ,useEffect} from "react";
 import CartItem from "./CartItem";
-import { getProductData } from "./Api";
-
-function CartItems() {
+function CartItems({products}) {
   const savedDataString = localStorage.getItem("cart");
   const cart = savedDataString ? JSON.parse(savedDataString) : {};
 
-  
+
+if(!products) {
+  return <></>
+}
     return(
-      Object.keys(cart).map((id) => {
-        console.log(id)
-        getProductData(id).then((product) =>{
-            console.log(product)
-            return <CartItem {...product} count ={ cart[id]}/>
+        products.map(details => {
+          return <CartItem {...details} count = {cart[details.id]} key = {details.id}/>
         }
-    )
-      }
       )
     )
-  }
+  
+      }
   export default CartItems;
