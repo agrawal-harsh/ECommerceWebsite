@@ -7,7 +7,7 @@ import ProductListPage from "./ProductListPage";
 import {Routes,Route} from "react-router-dom";
 import ProductPage from "./ProductPage";
 import NotFoundPage from "./NotFoundPage";
-import Cart from "./CartPage";
+import CartPage from "./CartPage";
 
 
 
@@ -42,7 +42,7 @@ function App() {
             {<ProductListPage/>}></Route>
 
           <Route path = "/cart"
-            element = {<Cart/>} />
+            element = {<CartPage/>} />
           
           <Route path = "/ProductPage/:id"
             element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
