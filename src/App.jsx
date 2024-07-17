@@ -7,6 +7,7 @@ import ProductListPage from "./ProductListPage";
 import {Routes,Route} from "react-router-dom";
 import ProductPage from "./ProductPage";
 import NotFoundPage from "./NotFoundPage";
+import Cart from "./CartPage";
 
 
 
@@ -39,9 +40,13 @@ function App() {
         <Routes>
           <Route index element = 
             {<ProductListPage/>}></Route>
+
+          <Route path = "/cart"
+            element = {<Cart/>} />
           
           <Route path = "/ProductPage/:id"
             element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
+
           <Route path = "/*"
             element = {<NotFoundPage/>} />
         </Routes>        
