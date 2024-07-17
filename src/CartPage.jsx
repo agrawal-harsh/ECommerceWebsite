@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import CartItems from './CartItems';
 
-function Cart(){
+function CartPage(){
     
 const [total,setTotal] = useState(0);
 const [subtotal,setsubTotal] = useState(0);
+
+
+  
     return (
     <div className='Container flex flex-col'>
     <div className='products border-1'>
@@ -15,6 +19,7 @@ const [subtotal,setsubTotal] = useState(0);
             <p className=''>Quality</p>
             <p className=''>Subtotal</p>
         </div>
+        <CartItems />
     </div>
         <div className='py-1 flex justify-between '>
             <div>
@@ -23,6 +28,7 @@ const [subtotal,setsubTotal] = useState(0);
             </div>
             <button className='px-2 py-0.5 rounded-sm bg-red-300 text-gray-700'>UPDATE CART</button>
         </div>
+
         <div className='self-end max-w-xl min-w-80 grid auto-rows-auto grid-cols-2 border-2 border-gray-500'>
             <h2 className='col-start-1 col-end-3'>Cart Totals</h2>
             <h3>subtotal</h3>
@@ -33,4 +39,4 @@ const [subtotal,setsubTotal] = useState(0);
     </div>
 )
 }
-export default Cart;
+export default CartPage;
