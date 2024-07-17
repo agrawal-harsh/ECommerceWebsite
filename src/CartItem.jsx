@@ -2,17 +2,21 @@ import React, { useState } from "react";
 import { CiCircleRemove } from "react-icons/ci";
 
 function CartItem({image,title,price,count}) {
-    console.log("in cart item section")
     const subtotal = price*count;
-    console.log(subtotal);
   return (
-      <div className="grid grid-cols-6 h-10">
+      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 items-center">
         <CiCircleRemove />
-        <img className="self-center aspect-square" src = {image}/>
+        <img className="self-center aspect-square h-10" src = {image}/>
+        </div>
         <p className="">{title}</p>
+        </div>
+        <div className="grid grid-cols-3">
         <p className="">{price}</p>
         <p className="">{count}</p>
         <p className="">{subtotal}</p>
+        </div>
       </div>
     
   );

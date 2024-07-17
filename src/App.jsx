@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import Navbar from "./Navbar";
 import Product from "./Product";
 import ProductList from "./ProductList";
@@ -13,12 +13,17 @@ import CartPage from "./CartPage";
 
 
 
+
 function App() {
 
   const savedDataString = localStorage.getItem("cart");
   const savedData = savedDataString ? JSON.parse(savedDataString) : {}
 
   const [cart,setCart] = useState(savedData);
+
+  
+
+
 
   function handdleAddToCart(productId,count){
     const newCart = {...cart,[productId]:cart[productId] ? cart[productId] + count :count}
@@ -42,7 +47,7 @@ function App() {
             {<ProductListPage/>}></Route>
 
           <Route path = "/cart"
-            element = {<CartPage/>} />
+            element = {<CartPage />} />
           
           <Route path = "/ProductPage/:id"
             element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
