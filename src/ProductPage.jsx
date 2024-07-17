@@ -17,6 +17,7 @@ function ProductPage({onAddToCart}) {
 
   
   useEffect(function (){
+    setLoading(true);
   getProductData(id).then((product) => {
     setProduct(product);
     setLoading(false);
