@@ -9,7 +9,7 @@ function Navbar({totalCount}) {
       <img className = "w-20  md:w-36 " src = {banner}></img>
       <div className = "flex flex-col items-center relative">
         <HiOutlineShoppingBag className= "text-3xl md:text-5xl text-orange-500"/>
-        <span className = "absolute bottom-[0] right-2.5 md:bottom-1.5 md:right-5">{totalCount}</span>
+        <span className = "absolute bottom-[18px] right-2.5 md:bottom-11 md:right-5">{totalCount}</span>
       </div>
     </div>
     </div>
