@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{memo} from 'react';
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import banner from "./images/banner.jpg";
 import { Link } from 'react-router-dom';
@@ -19,4 +19,4 @@ function Navbar({totalCount}) {
   );
 }
 
-export default Navbar;
+export default memo(Navbar);

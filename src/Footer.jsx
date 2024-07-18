@@ -1,3 +1,6 @@
+import React,{memo} from "react";
+
+
 function Footer() {
   return(
     <div className="text-white py-4 text-xs lg:text-sm flex-col lg:py-10 bg-gray-700 lg:px-40 flex lg:flex-row items-center justify-between">
@@ -6,4 +9,4 @@ function Footer() {
     </div>
   );
 }
-export default Footer;
+export default memo(Footer);

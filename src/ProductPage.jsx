@@ -1,9 +1,8 @@
 import React,{useState,useEffect} from "react";
-import getProductList from "./Api.jsx";
 import {Link,useParams} from "react-router-dom";
 import { HiArrowNarrowLeft,HiArrowNarrowRight } from "react-icons/hi";
 import {getProductData} from "./Api";
-import { ImSpinner } from "react-icons/im";
+import Loading from "./Loading.jsx";
 
 
 function ProductPage({onAddToCart}) {
@@ -38,9 +37,7 @@ function ProductPage({onAddToCart}) {
 }
   
   if(loading){
-    return <div className = "flex items-center justify-center h-full animate-spin">
-        <ImSpinner className = "text-5xl "/>
-      </div>
+    return <Loading />
   }
   if(!product){
     return <div className = "flex items-center justify-center h-full text-4xl">

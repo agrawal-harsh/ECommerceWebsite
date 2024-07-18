@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 import Product from "./Product";
 
 
@@ -12,4 +12,4 @@ function ProductList({items}) {
     })
   )
 }
-export default ProductList;
+export default memo(ProductList);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React,{memo} from "react";
 
 function getProductData(id){
   const promise = axios.get("https://fakestoreapi.com/products/" + id).then((response) => {
@@ -15,6 +15,6 @@ function getProductList() {
   });
   console.log(promise);
   return promise;
-}
+};
 export default getProductList ;
 export {getProductData};

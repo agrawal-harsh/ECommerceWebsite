@@ -1,5 +1,7 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState ,useEffect,memo} from "react";
 import CartItem from "./CartItem";
+
+
 function CartItems({products}) {
   const savedDataString = localStorage.getItem("cart");
   const cart = savedDataString ? JSON.parse(savedDataString) : {};
@@ -16,4 +18,4 @@ if(!products) {
     )
   
       }
-  export default CartItems;
+  export default memo(CartItems);

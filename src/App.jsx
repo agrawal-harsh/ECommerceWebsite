@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useCallback} from 'react';
 import Navbar from "./Navbar";
 import Product from "./Product";
 import ProductList from "./ProductList";
@@ -25,13 +25,13 @@ function App() {
 
 
 
-  function handdleAddToCart(productId,count){
+  const handdleAddToCart = useCallback(function (productId,count){
     const newCart = {...cart,[productId]:cart[productId] ? cart[productId] + count :count}
     setCart(newCart);
     const cartString = JSON.stringify(newCart);
     localStorage.setItem("cart",cartString)
   }
-
+,[]);
 
   console.log(cart);
 

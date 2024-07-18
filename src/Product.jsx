@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{memo} from 'react';
 import {Link} from "react-router-dom";
 
 function Product({category,title,image,price,id}) {
@@ -25,4 +25,4 @@ function Product({category,title,image,price,id}) {
   );
 }
 
-export default Product;
+export default memo(Product);

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from "react";
+import React,{useState,useEffect,memo} from "react";
 import {Link} from "react-router-dom";
 import notFoundImage from "./images/page-not-found.webp";
 
@@ -10,4 +10,4 @@ function NotFoundPage() {
     </div>
   )
 }
-export default NotFoundPage;
+export default memo(NotFoundPage);

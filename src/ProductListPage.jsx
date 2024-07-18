@@ -1,9 +1,9 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState,useEffect,useMemo} from 'react';
 import Product from "./Product";
 import ProductList from "./ProductList";
 import getProductList from "./Api.jsx";
 import PageNumber from "./PageNumber";
-import { ImSpinner } from "react-icons/im";
+import Loading from "./Loading.jsx";
 
 function ProductListPage() {
 
@@ -31,9 +31,9 @@ function ProductListPage() {
   setSort(event.target.value);
   }
 
-  const data = allData.filter(item => item.title.toLowerCase().indexOf(query) != -1 );
+  const data = useMemo(() => {return allData.filter(item => item.title.toLowerCase().indexOf(query) != -1 )},[allData,query,sort]);
 
-  data.sort(function (x,y) {
+  useMemo(() => {data.sort(function (x,y) {
   if(sort == "l2h"){
   return x.price - y.price;
   }else if(sort == "h2l") {
@@ -43,13 +43,11 @@ function ProductListPage() {
   }else{
   return x.title < y.title ? -1:1    
   }
-  })
-  if(loading){
-    return <div className = "flex items-center justify-center h-full animate-spin">
-      <ImSpinner className = "text-5xl "/>
-    </div>  }
+  })},[sort])
 
-  
+  if(loading){
+    return <Loading/>
+  }
   
   return (
     <>
