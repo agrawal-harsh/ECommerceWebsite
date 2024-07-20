@@ -7,6 +7,7 @@ import ProductPage from "./ProductPage";
 import NotFoundPage from "./NotFoundPage";
 import CartPage from "./CartPage";
 import SignUpPage from './SignUpPage';
+import LoginPage from "./LoginPage";
 
 
 
@@ -46,7 +47,9 @@ function App() {
 
           <Route path = "/cart" element = {<CartPage />} />
 
-          <Route path = "/SignUp" element = {<SignUpPage />} />
+          <Route path = "/login" element = {<LoginPage />} />
+
+          <Route path = "/signup" element = {<SignUpPage />} />
           
           <Route path = "/ProductPage/:id" element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
 

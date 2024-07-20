@@ -14,7 +14,7 @@ function SignUpPage() {
     const schema = Yup.object().shape({
         fullName:Yup.string().min(3,"Enter valid name").max(50).required(),
         email:Yup.string().required(),
-        userName:Yup.string().min(5),
+        userName:Yup.string().min(5).required(),
         password:Yup.string().min(8).required(),
         confirmPassword:Yup.string().min(8).required()
     })
@@ -34,13 +34,13 @@ function SignUpPage() {
     return(
         <div className="w-full h-full flex flex-col justify-center items-center mx-auto">
 
-<SiGnuprivacyguard  className="text-9xl text-orange-500 my-9"/>
 
         <div>
 
             <form
             onSubmit={handleSubmit}
-            className="flex flex-col  md:w-96 p-5 rounded-md md:shadow-md bg-gray-100">
+            className="flex flex-col  md:w-96 p-5 rounded-md md:shadow-md bg-gray-100 items-center">
+<SiGnuprivacyguard  className="text-9xl text-orange-500 my-9"/>
             <h1 className="text-2xl text-orange-500 font-bold self-center mb-4">
                 SignUp to buy!
             </h1>
@@ -130,7 +130,7 @@ function SignUpPage() {
             {touched.confirmPassword && errors.confirmPassword && <div className="text-red-500">{errors.confirmPassword}</div>}
             </div>
 
-            <div className="flex justify-evenly mt-4">
+            <div className="flex justify-around self-stretch mt-4">
             <button type="submit" className="px-2 py-1 bg-orange-500 text-white rounded-md w-28 disabled:bg-orange-300" disabled = {!dirty || !isValid}>Submit</button>
             <button type ="button" onClick= {resetForm} className="px-2 py-1 bg-orange-500 text-white rounded-md w-28">Reset</button>
             </div>
@@ -138,7 +138,7 @@ function SignUpPage() {
             </form>
 
             <div className=" mt-4">Already have an account?&emsp;
-            <Link className="text-orange-500" to = {"./login"}>
+            <Link className="text-orange-500" to = {"../login"}>
             Login!
             </Link>
             </div>
