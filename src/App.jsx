@@ -1,13 +1,12 @@
 import React,{useState,useEffect,useCallback} from 'react';
 import Navbar from "./Navbar";
-import Product from "./Product";
-import ProductList from "./ProductList";
 import Footer from "./Footer";
 import ProductListPage from "./ProductListPage";
 import {Routes,Route} from "react-router-dom";
 import ProductPage from "./ProductPage";
 import NotFoundPage from "./NotFoundPage";
 import CartPage from "./CartPage";
+import SignUpPage from './SignUpPage';
 
 
 
@@ -43,17 +42,15 @@ function App() {
     <Navbar totalCount = {totalCount}/>
       <div className = "grow mx-4 my-8 bg-white px-8 py-2 max-w-6xl lg:w-full lg:px-12 lg:py-16 xl:mx-auto">
         <Routes>
-          <Route index element = 
-            {<ProductListPage/>}></Route>
+          <Route index element = {<ProductListPage/>}></Route>
 
-          <Route path = "/cart"
-            element = {<CartPage />} />
+          <Route path = "/cart" element = {<CartPage />} />
+
+          <Route path = "/SignUp" element = {<SignUpPage />} />
           
-          <Route path = "/ProductPage/:id"
-            element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
+          <Route path = "/ProductPage/:id" element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
 
-          <Route path = "/*"
-            element = {<NotFoundPage/>} />
+          <Route path = "/*" element = {<NotFoundPage/>} />
         </Routes>        
     
       
