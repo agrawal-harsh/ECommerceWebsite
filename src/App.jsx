@@ -8,6 +8,7 @@ import NotFoundPage from "./NotFoundPage";
 import CartPage from "./CartPage";
 import SignUpPage from './SignUpPage';
 import LoginPage from "./LoginPage";
+import ForgotPassword from "./ForgotPassword";
 
 
 
@@ -50,6 +51,8 @@ function App() {
           <Route path = "/login" element = {<LoginPage />} />
 
           <Route path = "/signup" element = {<SignUpPage />} />
+
+          <Route path = "/forgotPassword" element = {<ForgotPassword />} />
           
           <Route path = "/ProductPage/:id" element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
 

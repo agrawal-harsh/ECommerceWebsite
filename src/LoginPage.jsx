@@ -84,7 +84,7 @@ function LoginPage() {
             </form>
 
             <div  className="text-orange-500 mt-4">
-            <Link to = {"./forgotPassword"}>
+            <Link to = {"../forgotPassword"}>
             Forgot Password?
             </Link>
             </div>
