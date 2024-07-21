@@ -1,10 +1,11 @@
-import React, { useState ,useEffect,memo} from "react";
+import React, {useContext,memo} from "react";
 import CartItem from "./CartItem";
+import { CartContext } from "./App";
 
 
 function CartItems({products}) {
-  const savedDataString = localStorage.getItem("cart");
-  const cart = savedDataString ? JSON.parse(savedDataString) : {};
+
+  const {cart} = useContext(CartContext);
 
 
 if(!products) {

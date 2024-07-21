@@ -1,8 +1,18 @@
-import React, { useState,memo } from "react";
+import React, { useState,memo, useContext } from "react";
 import { CiCircleRemove } from "react-icons/ci";
+import { CartContext } from "./App";
 
-function CartItem({image,title,price,count}) {
+function CartItem({id,image,title,price,count}) {
 
+  const {handdleAddToCart} = useContext(CartContext);
+
+  const [itemcount,setitemcount] = useState(count);
+
+  function handdleCountChange(event){
+    const newCount = event.target.value;
+    handdleAddToCart(id,newCount);
+    setitemcount(newCount);
+  }
 
 
     const subtotal = price*count;
@@ -15,7 +25,7 @@ function CartItem({image,title,price,count}) {
         </div>
         <div className="grid grid-cols-3 items-center">
         <p className="">{price}</p>
-        <input className="border-2 border-gray-500 w-12 self-center rounded-md pl-2" value = {count}></input>
+        <input onChange={handdleCountChange} type = "number" className="border-2 border-gray-500 w-12 self-center rounded-md pl-2" value = {count}></input>
         <p className="">{subtotal}</p>
         </div>
       </div>

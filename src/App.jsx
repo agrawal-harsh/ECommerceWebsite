@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useCallback} from 'react';
+import React,{useState,useEffect,useCallback, createContext} from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ProductListPage from "./ProductListPage";
@@ -12,7 +12,7 @@ import ForgotPassword from "./ForgotPassword";
 
 
 
-
+export const CartContext = createContext();
 
 
 function App() {
@@ -21,8 +21,6 @@ function App() {
   const savedData = savedDataString ? JSON.parse(savedDataString) : {}
 
   const [cart,setCart] = useState(savedData);
-
-  
 
 
 
@@ -34,12 +32,15 @@ function App() {
   }
 ,[]);
 
+  const cartData = {cart,setCart,handdleAddToCart};
+
   console.log(cart);
 
   
   const totalCount = Object.keys(cart).reduce((total,current) => total + cart[current],0);
 
   return (
+    <CartContext.Provider value={cartData}>
   <div className = "bg-gray-100 h-screen overflow-scroll flex flex-col">
     <Navbar totalCount = {totalCount}/>
       <div className = "grow mx-4 my-8 bg-white px-8 py-2 max-w-6xl lg:w-full lg:px-12 lg:py-16 xl:mx-auto">
@@ -64,6 +65,7 @@ function App() {
     <Footer className = "bottom-0"/>
     
   </div> 
+  </CartContext.Provider>
   );
 }
 

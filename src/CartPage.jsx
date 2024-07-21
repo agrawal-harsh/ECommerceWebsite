@@ -1,13 +1,14 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState ,useEffect, useContext} from 'react';
 import CartItems from './CartItems';
 import { getProductData } from "./Api";
 import Loading from "./Loading";
+import { CartContext } from './App';
+import {Link} from "react-router-dom";
+import { HiArrowNarrowLeft,HiArrowNarrowRight } from "react-icons/hi";
 
 function CartPage(){
 
-
-    const savedDataString = localStorage.getItem("cart");
-    const cart = savedDataString ? JSON.parse(savedDataString) : {};
+    const {cart} = useContext(CartContext);
     
 const [total,setTotal] = useState(0);
 const [loading,setLoading] = useState(true);
@@ -32,6 +33,7 @@ if(loading){
 }
     return (
     <div className='Container flex flex-col'>
+    <Link to="/" className = "text-3xl"><HiArrowNarrowLeft /></Link>
     <div className='products  flex flex-col'>
 
 
