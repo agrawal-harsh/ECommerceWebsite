@@ -3,7 +3,7 @@ import { Formik, useFormik,Form } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { SiGnuprivacyguard } from "react-icons/si";
-import Input from "./Input";
+import {FormikInput} from "./Input";
 
 
 function SignUpPage() {
@@ -44,7 +44,7 @@ function SignUpPage() {
                 SignUp to buy!
             </h1>
             <div>
-            <Input 
+            <FormikInput 
                 label = "enter your name"
                 id = "fullName"
                 name = "fullName"
@@ -55,7 +55,7 @@ function SignUpPage() {
             />
 
 
-            <Input 
+            <FormikInput 
                 label = "enter Email-address"
                 id = "email"
                 name = "email"
@@ -66,7 +66,7 @@ function SignUpPage() {
             />
 
             
-            <Input 
+            <FormikInput 
                 label = "enter user name"
                 id = "userName"
                 name = "userName"
@@ -79,7 +79,7 @@ function SignUpPage() {
 
 
             
-            <Input 
+            <FormikInput 
                 label = "enter your password"
                 id = "password"
                 name = "password"
@@ -91,7 +91,7 @@ function SignUpPage() {
 
 
             
-            <Input 
+            <FormikInput 
                 label = "Confirm your password"
                 id = "confirmPassword"
                 name = "confirmPassword"

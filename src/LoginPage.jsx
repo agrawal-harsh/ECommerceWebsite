@@ -3,7 +3,7 @@ import { Formik,Form} from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { HiOutlineLogin } from "react-icons/hi";
-import  Input from "./Input";
+import { FormikInput } from "./Input";
 
 
 function LoginPage() {
@@ -40,7 +40,7 @@ function LoginPage() {
                 Login to buy!
             </h1>
             <div>
-            <Input 
+            <FormikInput 
                 label = "enter user name"
                 id = "userName"
                 name = "userName"
@@ -52,7 +52,7 @@ function LoginPage() {
 
 
 
-            <Input 
+            <FormikInput 
                 label = "enter password"
                 id = "password"
                 name = "password"
