@@ -1,8 +1,9 @@
 import React from "react";
-import { Formik, useFormik } from "formik";
+import { Formik, useFormik,Form } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { SiGnuprivacyguard } from "react-icons/si";
+import Input from "./Input";
 
 
 function SignUpPage() {
@@ -13,129 +14,101 @@ function SignUpPage() {
 
     const schema = Yup.object().shape({
         fullName:Yup.string().min(3,"Enter valid name").max(50).required(),
-        email:Yup.string().required(),
+        email:Yup.string().email().required(),
         userName:Yup.string().min(5).required(),
         password:Yup.string().min(8).required(),
         confirmPassword:Yup.string().min(8).required()
     })
 
-    const {handleSubmit,handleChange,handleBlur,values,resetForm,errors,touched,isValid,dirty} = useFormik({
-        initialValues:{
-            fullName : "",
-            email: "",
-            userName:"",
-            password: "",
-            confirmPassword : ""
-        } ,
-        onSubmit : callSubmitApi,
-        validationSchema : schema,
-    }); 
 
     return(
         <div className="w-full h-full flex flex-col justify-center items-center mx-auto">
 
 
         <div>
-
-            <form
-            onSubmit={handleSubmit}
+        <Formik
+        initialValues={{
+            fullName : "",
+            email: "",
+            userName:"",
+            password: "",
+            confirmPassword : ""
+        } }
+        onSubmit = {callSubmitApi}
+        validationSchema = {schema}
+        >
+            <Form
             className="flex flex-col  md:w-96 p-5 rounded-md md:shadow-md bg-gray-100 items-center">
 <SiGnuprivacyguard  className="text-9xl text-orange-500 my-9"/>
             <h1 className="text-2xl text-orange-500 font-bold self-center mb-4">
                 SignUp to buy!
             </h1>
             <div>
-            <label htmlFor="fullName" className="sr-only">
-            Enter full Name
-            </label>
-            <input 
-            value = {values.fullName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="fullName"
-            placeholder="Full name"
-            type="text"
-            id="fullName"
-            autoComplete="fullName"
-            required
-            className="w-72 md:w-80 px-2 rounded bg-white border border-gray-300"></input>
-            {touched.fullName && errors.fullName && <div className="text-red-500">{errors.fullName}</div>}
+            <Input 
+                label = "enter your name"
+                id = "fullName"
+                name = "fullName"
+                placeholder = "full Name"
+                autoComplete = "full name"
+                className = ""
+                type = "text"
+            />
 
 
-            <label htmlFor="email" className="sr-only">
-            Enter email address
-            </label>
-            <input 
-            value = {values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="email"
-            placeholder="Email-address"
-            type="email"
-            id="email"
-            autoComplete="email"
-            required
-            className="w-72 md:w-80 px-2 rounded bg-white border border-gray-300 mt-4"></input>
-            {touched.email && errors.email && <div className="text-red-500">{errors.email}</div>}
+            <Input 
+                label = "enter Email-address"
+                id = "email"
+                name = "email"
+                placeholder = "Enter Email"
+                autoComplete = "email-address"
+                className = ""
+                type = "email"
+            />
 
-            <label htmlFor="userName" className="sr-only">
-            Enter user name
-            </label>
-            <input 
-            value = {values.userName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="userName"
-            placeholder="user name"
-            type="text"
-            id="userName"
-            autoComplete="userName"
-            required
-            className="w-72 md:w-80 px-2 rounded bg-white border border-gray-300 mt-4"></input>
-            {touched.userName && errors.userName && <div className="text-red-500">{errors.userName}</div>}
+            
+            <Input 
+                label = "enter user name"
+                id = "userName"
+                name = "userName"
+                placeholder = "Enter user Name"
+                autoComplete = "user name"
+                className = ""
+                type = "text"
+            />
 
 
 
-            <label htmlFor="password" className="sr-only">
-            Enter password
-            </label>
-            <input 
-            value = {values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="password"
-            placeholder="password"
-            type="password"
-            id="password"
-            autoComplete="password"
-            required
-            className="w-72 md:w-80 px-2 rounded bg-white border border-gray-300 mt-4"></input>
-            {touched.password && errors.password && <div className="text-red-500">{errors.password}</div>}
+            
+            <Input 
+                label = "enter your password"
+                id = "password"
+                name = "password"
+                placeholder = "Enter password"
+                autoComplete = "password"
+                className = ""
+                type = "password"
+            />
 
 
-            <label htmlFor="confirmPassword" className="sr-only">
-            Confirm Password
-            </label>
-            <input 
-            value = {values.confirmPassword}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            type="password"
-            id="confirmPassword"
-            autoComplete="confirmPassword"
-            required
-            className="w-72 md:w-80 px-2 rounded bg-white border border-gray-300 mt-4"></input>
-            {touched.confirmPassword && errors.confirmPassword && <div className="text-red-500">{errors.confirmPassword}</div>}
+            
+            <Input 
+                label = "Confirm your password"
+                id = "confirmPassword"
+                name = "confirmPassword"
+                placeholder = "confirm your password"
+                autoComplete = "confirmPassword"
+                className = ""
+                type = "password"
+            />
             </div>
 
             <div className="flex justify-around self-stretch mt-4">
-            <button type="submit" className="px-2 py-1 bg-orange-500 text-white rounded-md w-28 disabled:bg-orange-300" disabled = {!dirty || !isValid}>Submit</button>
-            <button type ="button" onClick= {resetForm} className="px-2 py-1 bg-orange-500 text-white rounded-md w-28">Reset</button>
+            <button type="submit" className="px-2 py-1 bg-orange-500 text-white rounded-md w-28 disabled:bg-orange-300" >Submit</button>
+            <button type ="button" className="px-2 py-1 bg-orange-500 text-white rounded-md w-28">Reset</button>
             </div>
 
-            </form>
+            </Form>
+            </Formik>
 
             <div className=" mt-4">Already have an account?&emsp;
             <Link className="text-orange-500" to = {"../login"}>
