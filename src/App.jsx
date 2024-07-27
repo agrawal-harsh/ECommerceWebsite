@@ -30,7 +30,7 @@ function App() {
     const cartString = JSON.stringify(newCart);
     localStorage.setItem("cart",cartString)
   }
-,[]);
+,[cart]);
 
   const cartData = {cart,setCart,handdleAddToCart};
 
