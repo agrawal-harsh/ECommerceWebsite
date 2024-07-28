@@ -1,18 +1,24 @@
 import React from "react";
-import { Formik, useFormik ,Form} from "formik";
+import { Formik, useFormik ,Form, withFormik} from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { GiNightSleep } from "react-icons/gi";
+import Input from "./Input";
 
-function ForgotPassword() {
 
-    function callSubmitApi () {
-        console.log(values.email);
-    }
+function callSubmitApi () {
+    console.log(values.email);
+}
 
-    const schema = Yup.object().shape({
-        email:Yup.string().required(),
-    })
+const schema = Yup.object().shape({
+    email:Yup.string().email().required(),
+})
+
+const initialValues = {
+    email:"",
+}
+
+function ForgotPassword({errors,touched,values,handleSubmit,handleBlur,handleChange,resetForm,dirty,isValid}) {
 
 
     return(
@@ -20,15 +26,8 @@ function ForgotPassword() {
 
         <div>
 
-        <Formik 
-        initialValues ={{
-            email:"",
 
-        } }
-        onSubmit = {callSubmitApi}
-        validationSchema = {schema}
-    >
-            <Form
+            <form
             onSubmit={handleSubmit}
             className="flex flex-col  md:w-96 p-5 rounded-md md:shadow-md bg-gray-100 items-center">
 
@@ -42,6 +41,11 @@ function ForgotPassword() {
                 label = "enter Email-address"
                 id = "email"
                 name = "email"
+                values={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                touched = {touched.email}
+                error = {errors.email} 
                 placeholder = "Enter Email"
                 autoComplete = "email-address"
                 className = ""
@@ -54,8 +58,7 @@ function ForgotPassword() {
             <button type ="button" onClick= {resetForm} className="px-2 py-1 bg-orange-500 text-white rounded-md ">Reset</button>
             </div>
 
-            </Form>
-            </Formik>
+            </form>
 
             <div  className="text-orange-500 mt-4">
             <Link to = {"../login"}>
@@ -68,10 +71,17 @@ function ForgotPassword() {
             Signup!
             </Link>
             </div>
-            
+
         </div>
 
         </div>
     )
 }
-export default ForgotPassword;
+
+const formikHOC = withFormik({
+    initialValues : initialValues,
+    onSubmit : callSubmitApi,
+    validationSchema : schema})
+
+
+export default formikHOC(ForgotPassword);

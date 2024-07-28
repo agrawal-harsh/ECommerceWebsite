@@ -4,16 +4,16 @@ import { CartContext } from "./App";
 
 function CartItem({id,image,title,price,count,handleRemove,handleCountChange}) {
 
-  
+
   const subtotal = price*count;
 
-  
+
 
 
   return (
       <div className="grid grid-cols-2 border-2 border-gray-500">
       <div className="grid grid-cols-6 items-center">
-        <CiCircleRemove className="ml-4" onClick={handleRemove} id = {id}/>
+        <CiCircleRemove className="ml-4 cursor-pointer" onClick={handleRemove} id = {id}/>
         <img className="self-center aspect-square h-10 " src = {image}/>
         <p className="col-start-3 col-end-7">{title}</p>
         </div>
@@ -23,7 +23,7 @@ function CartItem({id,image,title,price,count,handleRemove,handleCountChange}) {
         <p className="">{subtotal}</p>
         </div>
       </div>
-    
+
   );
 }
 export default memo(CartItem);

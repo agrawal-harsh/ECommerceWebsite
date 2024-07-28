@@ -12,6 +12,7 @@ const {cart,updateCart} = useContext(CartContext);
 const [localCart,setLocalCart] = useState(cart);
 const [total,setTotal] = useState(0);
 const [loading,setLoading] = useState(true);
+const [disabled,setDisabled] = useState(true);
 const subtotal = total;
 
 useEffect(()=>{
@@ -47,12 +48,14 @@ function handleCountChange(event){
     const productId = +event.target.id;
     const newLocalCart = {...localCart,[productId]:newValue}
     setLocalCart(newLocalCart);
+    setDisabled(false);
 }
 
 
 
 function handleUpdateCart(){
     updateCart(localCart);
+    setDisabled(true);
 }
 
 
@@ -82,7 +85,7 @@ if(loading){
             <input className='border-2 border-black rounded-sm ml-1' placeholder='Coupon code'></input>
             <button className='px-2 py-0.5 rounded-sm bg-red-400 ml-1 text-white'>APPLY COUPON</button>
             </div>
-            <button className='px-2 py-0.5 rounded-sm bg-red-300 text-gray-700' onClick={handleUpdateCart}>UPDATE CART</button>
+            <button className='px-2 py-0.5 rounded-sm bg-red-400 text-gray-700 disabled:bg-red-300' disabled = {disabled} onClick={handleUpdateCart}>UPDATE CART</button>
         </div>
 
         <div className='self-end max-w-xl min-w-80 grid auto-rows-auto grid-cols-2 border-2 border-gray-500 mt-10'>
