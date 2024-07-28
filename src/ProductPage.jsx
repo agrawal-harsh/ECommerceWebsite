@@ -12,7 +12,6 @@ function ProductPage({onAddToCart}) {
   const [loading,setLoading] = useState(true);
   const [product,setProduct] = useState();
   const [count,setCount] = useState(1);
-  console.log(id)
 
   
   useEffect(function (){

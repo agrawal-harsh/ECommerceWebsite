@@ -26,13 +26,17 @@ function App() {
 
   const handdleAddToCart = useCallback(function (productId,count){
     const newCart = {...cart,[productId]:cart[productId] ? cart[productId] + count :count}
+    updateCart(newCart);
+  }
+,[cart]);
+
+  function updateCart(newCart){
     setCart(newCart);
     const cartString = JSON.stringify(newCart);
     localStorage.setItem("cart",cartString)
   }
-,[]);
 
-  const cartData = {cart,setCart,handdleAddToCart};
+  const cartData = {cart,setCart,updateCart};
 
   console.log(cart);
 
