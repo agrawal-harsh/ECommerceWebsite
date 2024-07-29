@@ -68,7 +68,7 @@ if(loading){
     <div className='products  flex flex-col'>
 
 
-        <div className = "head border-2 border-gray-500 font-bold bg-gray-100 grid grid-cols-6 ">
+        <div className = "head border-2 border-gray-300 font-bold bg-gray-100 grid grid-cols-6 ">
             <p className='text-center col-start-1 col-end-4'>Product</p>
             <p className=''>Price</p>
             <p className=''>Quality</p>
@@ -79,7 +79,7 @@ if(loading){
         }
       )}
     </div>
-        <div className='py-1 flex justify-between border-2 border-gray-500'>
+        <div className='py-1 flex justify-between border-2 border-gray-300'>
             <div>
             <input className='border-2 border-black rounded-sm ml-1' placeholder='Coupon code'></input>
             <button className='px-2 py-0.5 rounded-sm bg-red-400 ml-1 text-white'>APPLY COUPON</button>
@@ -87,12 +87,17 @@ if(loading){
             <button className='px-2 py-0.5 rounded-sm bg-red-400 text-gray-700 disabled:bg-red-300' disabled = {disabled} onClick={handleUpdateCart}>UPDATE CART</button>
         </div>
 
-        <div className='self-end max-w-xl min-w-80 grid auto-rows-auto grid-cols-2 border-2 border-gray-500 mt-10'>
-            <h2 className='col-start-1 col-end-3'>Cart Totals</h2>
-            <h3>subtotal</h3>
-            <p>{subtotal}</p>
-            <h3>Total</h3>
-            <p>{total}</p>
+
+
+
+        
+        <div className='self-end min-w-80 grid auto-rows-auto grid-cols-2 border-2 border-gray-300 mt-10 md:w-96'>
+            <h2 className='col-start-1 col-end-3 font-bold bg-gray-100 pl-2'>Cart Totals</h2>
+            <h3 className = "pl-2">subtotal</h3>
+            <p className = "pl-2">{subtotal}</p>
+            <h3 className = "pl-2">Total</h3>
+            <p className = "pl-2">{total}</p>
+            <button className='px-2 py-1.5 rounded-sm bg-red-400 m-1 text-white col-start-1 col-end-3 md:m-2'>PROCEED TO CHECKOUT</button>
         </div>
     </div>
 )

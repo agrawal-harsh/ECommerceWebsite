@@ -11,7 +11,7 @@ function CartItem({id,image,title,price,count,handleRemove,handleCountChange}) {
 
 
   return (
-      <div className="grid grid-cols-2 border-2 border-gray-500">
+      <div className="grid grid-cols-2 border-2 border-gray-300">
       <div className="grid grid-cols-6 items-center">
         <CiCircleRemove className="ml-4 cursor-pointer" onClick={function(event){
         handleRemove(id)
