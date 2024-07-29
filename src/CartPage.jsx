@@ -23,6 +23,7 @@ useEffect(()=>{
 
 const [products,setProducts] = useState();
 useEffect(() => {
+    setLoading(true);
     const promises = Object.keys(cart).map((id) => getProductData(id));
     Promise.all(promises).then((response) =>{
     console.log(response);
@@ -33,20 +34,17 @@ useEffect(() => {
 
 
 
-function handleRemove(event){
-    const pid = event.target.id;
+function handleRemove(id){
     const newCart = {...cart};
-    delete newCart[pid];
+    delete newCart[id];
     updateCart(newCart);
-    setLoading(true);
 }
 
 
 
-function handleCountChange(event){
+function handleCountChange(event,id){
     const newValue = +event.target.value;
-    const productId = +event.target.id;
-    const newLocalCart = {...localCart,[productId]:newValue}
+    const newLocalCart = {...localCart,[id]:newValue}
     setLocalCart(newLocalCart);
     setDisabled(false);
 }
