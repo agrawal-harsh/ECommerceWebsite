@@ -29,6 +29,7 @@ useEffect(() => {
     console.log(response);
     setProducts(response);
     setLoading(false);
+    setTotal(response.reduce((total,current) => total + current.price * cart[current.id],0))
     })
     },[cart]);
 
