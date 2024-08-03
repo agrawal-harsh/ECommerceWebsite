@@ -7,7 +7,7 @@ import Input, {FormikInput} from "./Input";
 
 
 
-function callSubmitApi () {
+function callSubmitApi (values) {
     console.log(values.fullName,values.password,values.email);
 }
 
@@ -150,7 +150,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
 const formikHOC = withFormik({
     initialValues : initialValues,
     validationSchema : schema,
-    onSubmit  : callSubmitApi}
+    handleSubmit  : callSubmitApi}
 );
 
 

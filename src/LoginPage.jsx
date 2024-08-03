@@ -4,19 +4,24 @@ import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { HiOutlineLogin } from "react-icons/hi";
 import Input  from "./Input";
+import axios from "axios"
 
-function callSubmitApi () {
-    console.log(values.userName,values.password);
+function callSubmitApi (values) {
+    console.log(values.email,values.password);
+    axios.post("https://myeasykart.codeyogi.io/login",{
+        email: values.email,
+        password: values.password,
+    })
 }
 
 const schema = Yup.object().shape({
 
-    userName:Yup.string().min(5).required(),
+    email:Yup.string().min(5).required(),
     password:Yup.string().min(8).required(),
 })
 
 const initialValues={
-    userName:"",
+    email:"",
     password: "",
 } 
 
@@ -40,18 +45,18 @@ function LoginPage({errors,touched,values,handleSubmit,handleBlur,handleChange,d
             </h1>
             <div>
             <Input 
-                label = "enter user name"
-                id = "userName"
-                name = "userName"
-                values={values.userName}
+                label = "enter Email Address"
+                id = "email"
+                name = "email"
+                values={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                touched = {touched.userName}
-                error = {errors.userName} 
-                placeholder = "user name"
-                autoComplete = "user name"
+                touched = {touched.email}
+                error = {errors.email} 
+                placeholder = "Email Address"
+                autoComplete = "email"
                 className = ""
-                type = "text"
+                type = "email"
             />
 
 
@@ -99,8 +104,8 @@ function LoginPage({errors,touched,values,handleSubmit,handleBlur,handleChange,d
 
 const formikHOC = withFormik({
     initialValues : initialValues,
-onSubmit : callSubmitApi,
-validationSchema : schema,
+    handleSubmit : callSubmitApi,
+    validationSchema : schema,
 });
 
 export default formikHOC(LoginPage);
