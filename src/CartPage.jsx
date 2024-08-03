@@ -64,11 +64,15 @@ if(loading){
 }
     return (
     <div className='Container flex flex-col'>
+    <div>
     <Link to="/" className = "text-3xl"><HiArrowNarrowLeft /></Link>
+    <div className='text-center text-xl md:text-2xl'>Shopping Cart</div>
+    </div>
     <div className='products  flex flex-col'>
 
+    
 
-        <div className = "head border-2 border-gray-300 font-bold bg-gray-100 grid grid-cols-6 ">
+        <div className = "head border-2 border-gray-300 font-bold bg-gray-100 grid grid-cols-6 hidden md:grid">
             <p className='text-center col-start-1 col-end-4'>Product</p>
             <p className=''>Price</p>
             <p className=''>Quality</p>

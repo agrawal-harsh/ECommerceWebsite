@@ -1,5 +1,6 @@
 import React, { useState,memo, useContext } from "react";
 import { CiCircleRemove } from "react-icons/ci";
+import { MdOutlineDelete } from "react-icons/md";
 import { CartContext } from "./App";
 
 function CartItem({id,image,title,price,count,handleRemove,handleCountChange}) {
@@ -17,7 +18,7 @@ function CartItem({id,image,title,price,count,handleRemove,handleCountChange}) {
         handleRemove(id)
       }}/>
         <img className="self-center aspect-square h-10 " src = {image}/>
-        <p className="col-start-3 col-end-7">{title}</p>
+        <p className="col-start-3 col-end-7 text-red-400">{title}</p>
         </div>
         <div className="grid grid-cols-3 items-center">
         <p className="">{price}</p>

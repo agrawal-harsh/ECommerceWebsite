@@ -49,7 +49,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 id = "fullName"
                 name = "fullName"
                 required
-                values={values.fullName}
+                value={values.fullName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.fullName}
@@ -65,7 +65,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "enter Email-address"
                 id = "email"
                 name = "email"
-                values={values.email}
+                value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.email}
@@ -81,7 +81,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "enter user name"
                 id = "userName"
                 name = "userName"
-                values={values.userName}
+                value={values.userName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.userName}
@@ -99,7 +99,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "enter your password"
                 id = "password"
                 name = "password"
-                values={values.password}
+                value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.password}
@@ -130,7 +130,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
 
             <div className="flex justify-around self-stretch mt-4">
             <button type="submit" className="px-2 py-1 bg-orange-500 text-white rounded-md w-28 disabled:bg-orange-300"  disabled = {!dirty || !isValid}>Submit</button>
-            <button type ="button" inClick = {resetForm} className="px-2 py-1 bg-orange-500 text-white rounded-md w-28">Reset</button>
+            <button type ="button" onClick = {resetForm} className="px-2 py-1 bg-orange-500 text-white rounded-md w-28">Reset</button>
             </div>
 
             </form>
