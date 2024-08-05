@@ -1,4 +1,4 @@
-import React,{useState,useCallback,createContext} from 'react';
+import React,{useState,useCallback,createContext,useEffect} from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ProductListPage from "./ProductListPage";
@@ -9,16 +9,39 @@ import SignUpPage from "./SignUpPage";
 import LoginPage from "./LoginPage";
 import ForgotPassword from "./ForgotPassword";
 import CartPage from "./CartPage"
+import Loading from './Loading';
+import axios from "axios";
+import UserRoute from './UserRoute';
+import AuthRoute from './AuthRoute';
 
 export const CartContext = createContext();
+export const UserContext = createContext();
 
 function App() {
 
   const savedDataString = localStorage.getItem("cart");
   const savedData = savedDataString ? JSON.parse(savedDataString) : {}
+  const token = localStorage.getItem("token");
 
 
   const [cart,setCart] = useState(savedData);
+  const [user,setUser] = useState();
+  const [loading,setLoading] = useState(true);
+
+
+  useEffect(()=>{
+    if(token){
+      axios.get("https://myeasykart.codeyogi.io/me",{
+        headers:{
+          Authorization:token,
+        }
+        }).then((response)=> {setUser(response.data)
+          setLoading(false);
+      })
+    }else{
+      setLoading(false);
+    }
+  },[])
 
 
     const handdleAddToCart = useCallback(function(productId,count){
@@ -36,11 +59,17 @@ function App() {
     console.log(cart);
 
   const cartData = {cart,setCart,updateCart};
+  const userData = {user,setUser};
 
 
     const totalCount = Object.keys(cart).reduce((total,current) => total + cart[current],0);
 
+    if(loading){
+      return <Loading/>
+    }
+
   return (
+    <UserContext.Provider value = {userData}>
     <CartContext.Provider value = {cartData}>
   <div className = "bg-gray-100 h-screen overflow-scroll flex flex-col">
     <Navbar totalCount = {totalCount}/>
@@ -48,17 +77,17 @@ function App() {
 
         
         <Routes>
-        <Route index element = {<ProductListPage/>}></Route>
+        <Route index element = {<UserRoute><ProductListPage/></UserRoute>}></Route>
 
-        <Route path = "/cart" element = {<CartPage />} />
+        <Route path = "/cart" element = {<UserRoute><CartPage /></UserRoute>} />
 
-        <Route path = "/login" element = {<LoginPage />} />
+        <Route path = "/login" element = {<AuthRoute><LoginPage setUser = {setUser}/></AuthRoute>} />
           
-        <Route path = "/forgotpassword" element = {<ForgotPassword />} />
+        <Route path = "/forgotpassword" element = {<AuthRoute><ForgotPassword /></AuthRoute>} />
 
-        <Route path = "/signup" element = {<SignUpPage />} />
+        <Route path = "/signup" element = {<AuthRoute><SignUpPage /></AuthRoute>} />
           
-        <Route path = "/ProductPage/:id"element = {<ProductPage onAddToCart = {handdleAddToCart}/>} />
+        <Route path = "/ProductPage/:id"element = {<UserRoute><ProductPage onAddToCart = {handdleAddToCart}/></UserRoute>} />
           
         <Route path = "/*" element = {<NotFoundPage/>} />
         </Routes>        
@@ -69,6 +98,7 @@ function App() {
     
   </div> 
     </CartContext.Provider>
+    </UserContext.Provider>
   );
 }
 

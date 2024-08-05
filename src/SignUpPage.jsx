@@ -1,15 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import {withFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { SiGnuprivacyguard } from "react-icons/si";
 import Input, {FormikInput} from "./Input";
+import axios from "axios";
+import { UserContext } from "./App";
 
 
 
 function callSubmitApi (values) {
-    console.log(values.fullName,values.password,values.email);
-}
+    console.log(values.fullName,values.password,values.email);     
+        axios.post("https://myeasykart.codeyogi.io/signup",
+            {
+                fullName: values.fullName,
+                email: values.email,
+                password: values.password,
+            }
+        ).then((response) => {
+            const { user, token } = response.data;
+            localStorage.setItem("token", token);
+            const {setUser} = useContext(UserContext);
+            setUser(user)
+          })
+          .catch((error) => console.log("Invalid Creditails".error));
+      }
+
+
 
 const schema = Yup.object().shape({
     fullName:Yup.string().min(3,"Enter valid name").max(50).required(),
@@ -49,7 +66,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 id = "fullName"
                 name = "fullName"
                 required
-                value={values.fullName}
+                values={values.fullName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.fullName}
@@ -65,7 +82,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "enter Email-address"
                 id = "email"
                 name = "email"
-                value={values.email}
+                values={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.email}
@@ -81,7 +98,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "enter user name"
                 id = "userName"
                 name = "userName"
-                value={values.userName}
+                values={values.userName}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.userName}
@@ -99,7 +116,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "enter your password"
                 id = "password"
                 name = "password"
-                value={values.password}
+                values={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.password}
@@ -116,7 +133,7 @@ function SignUpPage({errors,touched,values,handleSubmit,handleBlur,handleChange,
                 label = "Confirm your password"
                 id = "confirmPassword"
                 name = "confirmPassword"
-                value={values.confirmPassword}
+                values={values.confirmPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 touched = {touched.confirmPassword}
@@ -152,6 +169,5 @@ const formikHOC = withFormik({
     validationSchema : schema,
     handleSubmit  : callSubmitApi}
 );
-
-
-export default formikHOC(SignUpPage);
+const EasySignupPage = formikHOC(SignUpPage);
+export default EasySignupPage;
