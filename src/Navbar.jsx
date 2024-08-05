@@ -24,20 +24,20 @@ function Navbar({totalCount}) {
       <img className = "w-20  md:w-36 " src = {banner}></img>
       <div className = "flex items-center relative gap-2 md:gap-8">
 
-      <Link to = {"./login"}>
-        <div className='text-orange-500'><LuUserCircle2 className='text-5xl relative top-1'/></div>
-      </Link>
- 
 
       {
         user && <button onClick = {handleLogout} className='px-2 py-1 bg-orange-500 text-white rounded-md w-28'>Logout</button>
       }
 
+      <Link to = {"./login"}>
+        <div className='text-orange-500'><LuUserCircle2 className='text-5xl relative top-1'/></div>
+      </Link>
 
-      <Link to = {"./Cart"} >
+
+      {user && <Link to = {"./Cart"} >
       <HiOutlineShoppingBag className= "text-3xl md:text-5xl text-orange-500 visited:text-orange-300"/>
         <span className = "absolute bottom-2 right-2 md:bottom-6 md:right-4">{totalCount}</span>
-        </Link>
+        </Link>}
       </div>
     </div>
     </div>
