@@ -6,10 +6,12 @@ import { SiGnuprivacyguard } from "react-icons/si";
 import Input, {FormikInput} from "./Input";
 import axios from "axios";
 import { UserContext } from "./App";
+import withUser from "./withUser";
+import withAlert from "./withAlert"
 
 
 
-function callSubmitApi (values) {
+function callSubmitApi (values,bag) {
     console.log(values.fullName,values.password,values.email);     
         axios.post("https://myeasykart.codeyogi.io/signup",
             {
@@ -20,10 +22,10 @@ function callSubmitApi (values) {
         ).then((response) => {
             const { user, token } = response.data;
             localStorage.setItem("token", token);
-            const {setUser} = useContext(UserContext);
-            setUser(user)
+            bag.props.setUser(user)
+            bag.props.setAlert({type:"success" , message : "Signed Up Successfully"})
           })
-          .catch((error) => console.log("Invalid Creditails".error));
+          .catch((error) => bag.props.setAlert({type:"failed" , message : "Invalid Creditails"}));
       }
 
 
@@ -170,4 +172,4 @@ const formikHOC = withFormik({
     handleSubmit  : callSubmitApi}
 );
 const EasySignupPage = formikHOC(SignUpPage);
-export default EasySignupPage;
+export default withAlert(withUser(EasySignupPage));

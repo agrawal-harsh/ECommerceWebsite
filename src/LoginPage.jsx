@@ -6,6 +6,8 @@ import { HiOutlineLogin } from "react-icons/hi";
 import Input from "./Input";
 import axios from "axios";
 import { UserContext } from "./App";
+import withUser from "./withUser";
+import withAlert from "./withAlert"
 
 function callSubmitApi(values,bag) {
   axios
@@ -17,8 +19,11 @@ function callSubmitApi(values,bag) {
       const { user, token } = response.data;
       localStorage.setItem("token", token);
       bag.props.setUser(user);
+      bag.props.setAlert({type:"success" , message : "Logged in Successfully"})
     })
-    .catch((error) => console.log("Invalid Creditails",error));
+    .catch((error) => {
+      bag.props.setAlert({type:"failed" , message : "Invalid Creditails"})
+    });
 }
 
 const schema = Yup.object().shape({
@@ -129,4 +134,4 @@ const formikHOC = withFormik({
   validationSchema: schema,
 });
 
-export default formikHOC(LoginPage);
+export default withAlert(withUser(formikHOC(LoginPage)));

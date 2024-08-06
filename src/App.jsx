@@ -13,9 +13,11 @@ import Loading from './Loading';
 import axios from "axios";
 import UserRoute from './UserRoute';
 import AuthRoute from './AuthRoute';
+import Alert from './Alert';
 
 export const CartContext = createContext();
 export const UserContext = createContext();
+export const AlertContext = createContext();
 
 function App() {
 
@@ -27,6 +29,10 @@ function App() {
   const [cart,setCart] = useState(savedData);
   const [user,setUser] = useState();
   const [loading,setLoading] = useState(true);
+  const [alert,setAlert] = useState({
+    message:"this is text",
+    type:"failed"
+  })
 
 
   useEffect(()=>{
@@ -58,8 +64,14 @@ function App() {
 
     console.log(cart);
 
+
+    function RemoveAlert(){
+      setAlert(undefined);
+    }
+
   const cartData = {cart,setCart,updateCart};
   const userData = {user,setUser};
+  const alertData = {alert,setAlert,RemoveAlert};
 
 
     const totalCount = Object.keys(cart).reduce((total,current) => total + cart[current],0);
@@ -69,10 +81,12 @@ function App() {
     }
 
   return (
+    <AlertContext.Provider value={alertData}>
     <UserContext.Provider value = {userData}>
     <CartContext.Provider value = {cartData}>
   <div className = "bg-gray-100 h-screen overflow-scroll flex flex-col">
     <Navbar totalCount = {totalCount}/>
+    <Alert/>
       <div className = "grow mx-4 my-8 bg-white px-8 py-2 max-w-6xl lg:w-full lg:px-12 lg:py-16 xl:mx-auto">
 
         
@@ -81,7 +95,7 @@ function App() {
 
         <Route path = "/cart" element = {<UserRoute><CartPage /></UserRoute>} />
 
-        <Route path = "/login" element = {<AuthRoute><LoginPage setUser = {setUser}/></AuthRoute>} />
+        <Route path = "/login" element = {<AuthRoute><LoginPage/></AuthRoute>} />
           
         <Route path = "/forgotpassword" element = {<AuthRoute><ForgotPassword /></AuthRoute>} />
 
@@ -99,6 +113,7 @@ function App() {
   </div> 
     </CartContext.Provider>
     </UserContext.Provider>
+    </AlertContext.Provider>
   );
 }
 
