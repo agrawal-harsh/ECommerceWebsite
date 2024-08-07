@@ -1,4 +1,4 @@
-import React,{useState,useCallback,createContext,useEffect} from 'react';
+import {useState,useCallback,createContext,useEffect} from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ProductListPage from "./ProductListPage";
@@ -29,10 +29,7 @@ function App() {
   const [cart,setCart] = useState(savedData);
   const [user,setUser] = useState();
   const [loading,setLoading] = useState(true);
-  const [alert,setAlert] = useState({
-    message:"this is text",
-    type:"failed"
-  })
+  const [alert,setAlert] = useState()
 
 
   useEffect(()=>{
@@ -86,8 +83,10 @@ function App() {
     <CartContext.Provider value = {cartData}>
   <div className = "bg-gray-100 h-screen overflow-scroll flex flex-col">
     <Navbar totalCount = {totalCount}/>
-    <Alert/>
       <div className = "grow mx-4 my-8 bg-white px-8 py-2 max-w-6xl lg:w-full lg:px-12 lg:py-16 xl:mx-auto">
+
+      
+    <Alert/>
 
         
         <Routes>

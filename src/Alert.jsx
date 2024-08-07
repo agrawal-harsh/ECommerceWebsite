@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import withAlert from "./withAlert";
 
 
@@ -25,10 +25,11 @@ function Alert({alert,RemoveAlert}){
       <div>
         <span className="font-medium">{type + " alert!"}</span> {message}
       </div>
-      <button onClick = {RemoveAlert} className="ml-20">
+      <div className="grow"></div>
+      <button onClick = {RemoveAlert} className="ml-20 text-black">
       Dismiss
       </button>
     </div>
     
 }
-export default withAlert(Alert);
+export default memo(withAlert(Alert));
