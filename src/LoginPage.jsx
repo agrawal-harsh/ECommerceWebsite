@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
-import { Formik, Form, withFormik } from "formik";
+import { useContext } from "react";
+import { withFormik } from "formik";
 import { Link, Navigate } from "react-router-dom";
 import * as Yup from "yup";
 import { HiOutlineLogin } from "react-icons/hi";
 import Input from "./Input";
 import axios from "axios";
-import { UserContext } from "./App";
-import withUser from "./withUser";
-import withAlert from "./withAlert"
+import { UserContext } from "./Context";
+import { withAlert,withUser } from "./withProvider";
 
 function callSubmitApi(values,bag) {
   axios

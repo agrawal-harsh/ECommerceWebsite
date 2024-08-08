@@ -1,10 +1,17 @@
-import React, { memo } from "react";
-import withAlert from "./withAlert";
+import { memo, useEffect } from "react";
+import withAlert from "./withProvider";
 
 
 function Alert({alert,RemoveAlert}){
     
-    setTimeout(RemoveAlert, 3*1000);
+    useEffect(()=>{
+      if(alert) {
+      const timeout = setTimeout(RemoveAlert, 3*1000);
+      return ()=> clearTimeout(timeout);
+      }
+    },[alert])
+
+
     if(!alert){
         return;
     }

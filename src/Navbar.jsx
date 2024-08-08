@@ -1,9 +1,9 @@
-import React,{memo, useContext} from 'react';
+import {memo, useContext} from 'react';
 import { HiOutlineShoppingBag } from "react-icons/hi";
 import { LuUserCircle2 } from "react-icons/lu";
 import banner from "./images/banner.jpg";
 import { Link } from 'react-router-dom';
-import { UserContext } from './App';
+import { UserContext } from './Context';
 
 
 

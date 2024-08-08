@@ -5,8 +5,7 @@ import * as Yup from "yup";
 import { SiGnuprivacyguard } from "react-icons/si";
 import Input from "./Input";
 import axios from "axios";
-import withUser from "./withUser";
-import withAlert from "./withAlert";
+import {withUser,withAlert} from "./withProvider";
 
 function callSubmitApi(values, bag) {
   console.log(values.fullName, values.password, values.email);

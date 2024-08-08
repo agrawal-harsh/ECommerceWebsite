@@ -1,7 +1,6 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
-import { UserContext } from "./App";
-import withUser from "./withUser";
+import {withUser} from "./withProvider";
 
 function UserRoute({children,user}){
     if(!user){

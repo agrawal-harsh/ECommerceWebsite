@@ -13,13 +13,16 @@ import Loading from './Loading';
 import axios from "axios";
 import UserRoute from './UserRoute';
 import AuthRoute from './AuthRoute';
+import { AlertContext,UserContext } from './Context';
 import Alert from './Alert';
 
+
 export const CartContext = createContext();
-export const UserContext = createContext();
-export const AlertContext = createContext();
+
 
 function App() {
+
+  
 
   const savedDataString = localStorage.getItem("cart");
   const savedData = savedDataString ? JSON.parse(savedDataString) : {}
